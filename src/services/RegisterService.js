@@ -5,3 +5,9 @@ export const searchMovie = (query) =>
     .then((response) => response)
 
 export const getDetailedMovie(id)
+
+
+
+export const registerService = (username, password) => {
+    
+}

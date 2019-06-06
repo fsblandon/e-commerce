@@ -2,24 +2,36 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { Home } from '../src/views/Home';
+import { Login } from '../src/views/Login';
+import { Register } from '../src/views/Register';
+
+import { Provider } from 'react-redux';
+
+import configurateStore from './store/configureStore';
+
+
+function Routes() {
+  return (
+    <React.Fragment>
+      <Route exact path="/" component={Home}></Route>
+      <Route exact path="/login" component={Login}></Route>
+      <Route exact path="/register" component={Register}></Route>
+    </React.Fragment>
+  );
+}
+
+const store = configurateStore();
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Routes/>
+      </Router>
+    </Provider>
   );
 }
 
