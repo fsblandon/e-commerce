@@ -1,7 +1,7 @@
-import userConstants from '../_constants/userConstants';
+import { userConstants } from '../_constants';
 
 //Service
-import getUsers from '../services/LoginService';
+//import getUsers from '../services/LoginService';
 
 
 export const loginRequest = () => ({
@@ -18,7 +18,17 @@ export const loginFailure = (error) => ({
     payload: error
 });
 
-export const fetchUsers = () => (dispatch) => {
+export const loginUser = (username, password) => (dispatch) => {
+    dispatch(loginRequest());
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user.username !== username && user.password !== password) {
+        dispatch(loginFailure('User not valid'));
+    } else {
+        dispatch(loginSuccess(user));
+    }
+}
+
+/* export const fetchUsers = () => (dispatch) => {
     dispatch(loginRequest());
     //api
     getUsers()
@@ -30,4 +40,4 @@ export const fetchUsers = () => (dispatch) => {
             dispatch(loginFailure(error));
         }
     )
-}
+} */

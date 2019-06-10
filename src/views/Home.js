@@ -2,13 +2,17 @@ import React from 'react';
 
 class Home extends React.Component {
 
-    componentDidMount() {
-        this.props.fecthUsers();
+    state = {
+        //...moviesData,
     }
+
+    /* componentDidMount() {
+        this.props.fecthUsers();
+    } */
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid background">
                 <span>PRODUCTS</span>
             </div>
         );

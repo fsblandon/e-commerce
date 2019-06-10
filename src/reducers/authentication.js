@@ -1,4 +1,4 @@
-import userConstants from '../_constants/userConstants';
+import {userConstants} from '../_constants';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? {isLogin: true, user} : {};
@@ -23,6 +23,6 @@ export default (state = initialState, action) => {
                 error: action.error
             };
         default:
-            state;
+            return state;
     }
 }
