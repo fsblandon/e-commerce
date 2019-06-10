@@ -2,17 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { css } from '@emotion/core';
-
-import { ClipLoader } from 'react-spinners';
-
-const override = css`
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    border-color: red;
-`;
-
 class Login extends React.Component {
 
     constructor(props) {
@@ -43,7 +32,7 @@ class Login extends React.Component {
         const { username, password, submitted } = this.state;
         return (
             <div className="container-fluid background">
-                <h1 className="padding">Bienvenidos a tu E-Commerce</h1>
+                <h1 className="padding">Bienvenidos a tu Music Commerce</h1>
                 <div className="col-md-12">
                     <form name="form" onSubmit={this.handleSubmit} className="form">
                         <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
@@ -64,13 +53,6 @@ class Login extends React.Component {
                             <button className="btn btn-primary">Login</button>
                             <Link to="/register" className="btn btn-link">Register</Link>
                         </div>
-                        <ClipLoader
-                            css={override}
-                            sizeUnit={"px"}
-                            size={150}
-                            color={'#123abc'}
-                            loading={this.state.loading}
-                            />
                     </form>
                 </div>
             </div>

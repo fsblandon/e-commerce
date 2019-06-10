@@ -5,12 +5,15 @@ import {registerUser} from '../actions';
 
 import Register from '../views/Register'
 
-const mapStateToProps = (state) => ({
-    user: state.user
-});
+const mapStateToProps = (state) => {
+    const { registering } = state.registration
+    return { registering };
+};
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-    registerUser
-}, dispatch);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        registerUser : (data) => dispatch(registerUser(data))
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)

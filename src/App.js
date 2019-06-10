@@ -10,7 +10,9 @@ import Home from '../src/views/Home';
 import Login from '../src/views/Login';
 import Register from '../src/views/Register';
 
-
+var client_id = '48a70e784037410787d4a3d41a25e8c1'; // Your client id
+var client_secret = '1ebf705584d241e8a05149dded6bf1b7'; // Your secret
+var redirect_uri = ''; // Your redirect uri
 
 function Routes() {
   return (

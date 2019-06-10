@@ -2,12 +2,12 @@ import { userConstants } from '../_constants';
 
 export const registerRequest = (user) => ({
     type: userConstants.REGISTER_REQUEST,
-    payload: user
+    payload: {user}
 });
 
 export const registerSuccess = (user) => ({
     type: userConstants.REGISTER_SUCCESS,
-    payload: {user}
+    payload: user
 });
 
 export const registerFailure = (error) => ({

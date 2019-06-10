@@ -5,17 +5,15 @@ export default (state = {}, action) => {
     case userConstants.REGISTER_REQUEST:
       return {
         ...state,
-        user: action.payload
+        registering: true
       };
     case userConstants.REGISTER_SUCCESS:
       return {
-        ...state,
-        user: action.user
+        ...state
       };
     case userConstants.REGISTER_FAILURE:
       return {
-        ...state,
-        error: action.error
+        ...state
       };
     default:
       return state
