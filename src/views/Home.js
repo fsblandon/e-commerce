@@ -1,28 +1,36 @@
 import React from 'react';
 import BookCard from '../components/bookCard';
-import { getBooks} from '../api/books'
+import {getBooks} from '../api/books'
 
 class Home extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            book:{}
+            books: []
         }
     }
 
     componentDidMount() {
         getBooks()
-            .then((book) => this.setState({book: book}))
-            .catch((err) => console.log('Error getting API' + err));
+        .then(books => {
+            this.setState({books})
+        })
+        .catch(error => {
+            console.log('Error getting API' + error)
+        })
     }
 
     render() {
-        const { book } = this.state
+        const { books } = this.state
         return (
-            <div className="container-fluid background">
-                <BookCard {...book}/>
-            </div>
+            <React.Fragment>
+                <div className="container-fluid background">
+                    {books.map(book => {
+                        return <BookCard {...book}/>
+                    })}
+                </div>
+            </React.Fragment>
         );
     }
 }

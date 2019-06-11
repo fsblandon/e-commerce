@@ -8,12 +8,15 @@ const massage = (book) => ({
     cover: book.cover
   });
 
-const URL = 'http://www.etnassoft.com/';
+const URL = `http://www.etnassoft.com/`;
 
-export const getBooks = () =>
+export const getBooks = () => {
     axios.defaults.headers = 'Access-Control-Allow-Origin';
     axios.get(URL + `api/v1/get/?category=libros_programacion`)
     .then((response) => {
         console.log(response);
-        response.data.results.map((book) => massage(book))
+        response.data.results.map(
+          (book) => massage(book)
+        )
     });
+}
