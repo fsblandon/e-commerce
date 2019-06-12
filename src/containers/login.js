@@ -1,15 +1,15 @@
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Login from '../views/Login'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Login from '../views/Login';
+import {loginUser} from '../actions';
 
-const mapStateToProps = ({movies, users}) => ({
-    movies,
+
+const mapStateToProps = ({users}) => ({
     users
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    requestMovies,
-    fetchUsers
+    loginUser
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

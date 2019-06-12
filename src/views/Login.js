@@ -24,7 +24,9 @@ class Login extends React.Component {
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
+            console.log(this.props);
             this.props.loginUser(username, password);
+            //this.props.history.push('home');
         }
     }
 
@@ -32,7 +34,7 @@ class Login extends React.Component {
         const { username, password, submitted } = this.state;
         return (
             <div className="container-fluid background">
-                <h1 className="padding">Bienvenidos a tu Music Commerce</h1>
+                <h1 className="padding">Bienvenidos a tu e-Biblioteca</h1>
                 <div className="col-md-12">
                     <form name="form" onSubmit={this.handleSubmit} className="form">
                         <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>

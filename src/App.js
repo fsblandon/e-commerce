@@ -1,21 +1,24 @@
 import React from 'react';
 import './App.css';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux'
 
 import configurateStore from './store/configureStore';
 
 import Home from '../src/views/Home';
-import Login from '../src/views/Login';
-import Register from '../src/views/Register';
+import register from '../src/containers/register';
+import login from '../src/containers/login';
+
+import { history } from '../src/_helpers/history';
+
 
 function Routes() {
   return (
     <React.Fragment>
-      <Route exact path="/" component={Home}></Route>
-      <Route exact path="/login" component={Login}></Route>
-      <Route exact path="/register" component={Register}></Route>
+      <Route exact path="/" component={login}></Route>
+      <Route exact path="/home" component={Home}></Route>
+      <Route exact path="/register" component={register}></Route>
     </React.Fragment>
   );
 }
@@ -25,7 +28,7 @@ const store = configurateStore();
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <Router history={history}>
         <Routes/>
       </Router>
     </Provider>

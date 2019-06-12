@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import {registerUser} from '../actions';
+import {withRouter} from 'react-router-dom';
 
 class Register extends React.Component {
 
@@ -41,6 +41,7 @@ class Register extends React.Component {
         if (user.firstName && user.lastName && user.username && user.password) {
             console.log(this.props);
             this.props.registerUser(user);
+            //this.props.history.push('/');
         }
     }
 
@@ -82,9 +83,9 @@ class Register extends React.Component {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
-                        {registering && <span>Registrando...</span>}
                         <Link to={`/`} className="btn btn-link">Cancel</Link>
                     </div>
+                    {registering && <span>Registrando...</span>}
                 </form>
             </div>
         </div>)

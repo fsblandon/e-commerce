@@ -13,7 +13,8 @@ export default (state = {}, action) => {
       };
     case userConstants.REGISTER_FAILURE:
       return {
-        ...state
+        ...state,
+        registering: false
       };
     default:
       return state

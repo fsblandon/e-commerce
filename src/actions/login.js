@@ -1,11 +1,12 @@
 import { userConstants } from '../_constants';
 
-//Service
-//import getUsers from '../services/LoginService';
+import { history } from '../_helpers/history';
 
 
-export const loginRequest = () => ({
-    type: userConstants.LOGIN_REQUEST
+
+export const loginRequest = (user) => ({
+    type: userConstants.LOGIN_REQUEST,
+    payload: user
 });
 
 export const loginSuccess = (user) => ({
@@ -19,12 +20,13 @@ export const loginFailure = (error) => ({
 });
 
 export const loginUser = (username, password) => (dispatch) => {
-    dispatch(loginRequest());
+    dispatch(loginRequest(username));
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user.username !== username && user.password !== password) {
-        dispatch(loginFailure('User not valid'));
+    if(user.username !== username || user.password !== password) {
+        dispatch(loginFailure(alert('Usuario incorrecto')));
     } else {
         dispatch(loginSuccess(user));
+        history.push('/home');
     }
 }
 

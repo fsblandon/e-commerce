@@ -1,6 +1,6 @@
 import React from 'react';
 import BookCard from '../components/bookCard';
-import {getBooks} from '../api/books'
+import {getBooks} from '../api/books';
 
 class Home extends React.Component {
 
@@ -14,6 +14,7 @@ class Home extends React.Component {
     componentDidMount() {
         getBooks()
         .then(books => {
+            console.log(books);
             this.setState({books})
         })
         .catch(error => {
