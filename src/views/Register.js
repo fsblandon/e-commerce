@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import {withRouter} from 'react-router-dom';
-
 class Register extends React.Component {
 
     constructor(props) {

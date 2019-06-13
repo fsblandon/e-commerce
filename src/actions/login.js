@@ -22,9 +22,12 @@ export const loginFailure = (error) => ({
 export const loginUser = (username, password) => (dispatch) => {
     dispatch(loginRequest(username));
     const user = JSON.parse(localStorage.getItem('user'));
-    if(user.username !== username || user.password !== password) {
+    if(user.username !== username) {
         dispatch(loginFailure(alert('Usuario incorrecto')));
-    } else {
+    } else if (user.password !== password){
+        dispatch(loginFailure(alert('Contraseña incorrecta')));
+    }
+    else {
         dispatch(loginSuccess(user));
         history.push('/home');
     }

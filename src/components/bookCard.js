@@ -1,5 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class BookCard extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class BookCard extends React.Component {
   }
 
   render() {
-    const { ID, title, author, content, cover } = this.props;
+    const {ID, title, author, content, cover } = this.props;
     return (
         <div className='card'>
             <img src={cover}  className="card-img-top" alt="book"/>
@@ -32,13 +33,14 @@ class BookCard extends React.Component {
                 <h5>{title} - {author}</h5>
                 <p>{content}</p>
             </div>
+            <Link className='btn btn-primary' to={`/book/${ID}`}>Detail</Link>
         </div>
     );
   }
 }
 
 BookCard.propTypes = {
-  ID: PropTypes.number,
+  ID: PropTypes.string,
   title: PropTypes.string,
   author: PropTypes.string,
   content: PropTypes.string,

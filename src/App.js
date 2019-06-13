@@ -11,6 +11,7 @@ import register from '../src/containers/register';
 import login from '../src/containers/login';
 
 import { history } from '../src/_helpers/history';
+import Book from './views/Book';
 
 
 function Routes() {
@@ -19,6 +20,7 @@ function Routes() {
       <Route exact path="/" component={login}></Route>
       <Route exact path="/home" component={Home}></Route>
       <Route exact path="/register" component={register}></Route>
+      <Route exact path="/book/:id" component={Book}></Route>
     </React.Fragment>
   );
 }

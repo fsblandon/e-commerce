@@ -1,7 +1,7 @@
 import React from 'react';
 import BookCard from '../components/bookCard';
-import {getBooks} from '../api/books';
 
+import {  dataBooks } from '../data/books';
 class Home extends React.Component {
 
     constructor(props){
@@ -12,24 +12,24 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        getBooks()
-        .then(books => {
-            console.log(books);
-            this.setState({books})
-        })
-        .catch(error => {
-            console.log('Error getting API' + error)
-        })
+        this.setState({ books: dataBooks.data.books })
     }
 
     render() {
         const { books } = this.state
         return (
             <React.Fragment>
-                <div className="container-fluid background">
-                    {books.map(book => {
-                        return <BookCard {...book}/>
-                    })}
+                <nav className="navbar navbar-light bg-light navBack">
+                    <a className="navbar-brand">e-Biblioteca</a>
+                    <form className="form-inline">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar libro</button>
+                    </form>
+                </nav>
+                <div className="container-fluid">
+                            {books.map(book => {
+                                return <BookCard {...book} key={book.ID}/>
+                            })}
                 </div>
             </React.Fragment>
         );

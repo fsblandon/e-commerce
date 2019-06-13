@@ -18,3 +18,13 @@
   text-align: center;
   padding-bottom: 10px;
 }
+
+.card {
+  margin: 15px;
+  text-align: center;
+  max-width: 30%;
+}
+
+.navBack {
+  background: lightskyblue;
+}
