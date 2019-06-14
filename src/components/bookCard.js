@@ -6,35 +6,20 @@ class BookCard extends React.Component {
   state = {
   }
 
-  shouldComponentUpdate() {
-    //Remember to return true or false
-    return true
-  }
-
-
-  componentDidMount() {
-    console.log(this.state)
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    //console.log(this.state)
-  }
-
-  componentWillUnmount() {
-    //console.log('I will unmount')
-  }
-
   render() {
     const {ID, title, author, content, cover } = this.props;
     return (
-        <div className='card'>
-            <img src={cover}  className="card-img-top" alt="book"/>
-            <div className="card-body">
-                <h5>{title} - {author}</h5>
-                <p>{content}</p>
+          <div className="col-md-4">
+            <div className='card'>
+                <img src={cover}  className="card-img-top" alt="book"/>
+                <div className="card-body">
+                    <h5>{title} - {author}</h5>
+                    <p>{content}</p>
+                    <Link className='btn btn-primary'>Solicitar</Link>
+                </div>
+                <Link className='btn btn-primary' to={`/book/${ID}`}>Detalle</Link>
             </div>
-            <Link className='btn btn-primary' to={`/book/${ID}`}>Detail</Link>
-        </div>
+          </div>
     );
   }
 }

@@ -10,9 +10,9 @@ export default class Book extends React.Component {
   }
 
   componentDidMount() {
-    const { match, books } = this.props;
+    const { match } = this.props;
     if (match.params.id) {
-      const book = books.data.filter((book) => {
+      const book = dataBooks.data.books.filter((book) => {
         return Number(book.ID) === Number(match.params.id)
       })
       this.setState({ book: book[0] })
