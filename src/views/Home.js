@@ -1,6 +1,7 @@
 import React from 'react';
 
 import BookCard from '../components/bookCard';
+import Cart from '../components/cart';
 
 import {  dataBooks } from '../data/books';
 
@@ -10,28 +11,27 @@ class Home extends React.Component {
         super(props);
         this.state = {
             books: [],
-            cart: []
+            cart: [],
+            showCart: false,
+            id: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleAddToCart = this.handleAddToCart.bind(this);
-
+        this.viewCart = this.viewCart.bind(this);
     }
     
 
     componentDidMount() {
-        this.setState({ books: dataBooks.data.books })
+        this.setState({ books: dataBooks.data.books });
     }
+
+    /* componentDidUpdate() {
+        this.setState({cart: this.props.cart ? this});
+    } */
 
     handleAddToCart(book) {
         const cartItem = this.state.cart.find(x => x.ID === book.ID);
-        if (this.state.cart.length === 0) {
-            //this.setState({cart: [...this.state.cart, book]});
-            this.setState({cart: [...this.state.cart, book]});
-        } else {
-            !cartItem && this.setState({cart: [...this.state.cart, book]});
-        }
-        console.log(cartItem);
-        console.log(this.state.cart);
+        !cartItem && this.setState({cart : [...this.state.cart, book]});
     }
 
     handleChange = (e) => {
@@ -54,12 +54,18 @@ class Home extends React.Component {
         });
     }
 
-    handleClick = () => {
-        
+    viewCart = () => {
+        console.log(this.state.cart);
+        if(this.state.cart.length > 0){
+            this.setState({showCart: true});
+            this.setState({id: 'cartModal'});
+        } else {
+            this.setState({showCart: false});
+        }
     }
 
     render() {
-        const { books, cart } = this.state
+        const { books, cart, showCart, id } = this.state;
         return (
             <React.Fragment>
                 <nav className="navbar navbar-light navBack fixed-top">
@@ -67,11 +73,12 @@ class Home extends React.Component {
                     <form className="form-inline">
                         <input className="form-control mr-sm-2" type="text" placeholder="Buscar libro" aria-label="Search" onChange={this.handleChange}/>
                     </form>
-                    <button className="btn btn-primary" onClick={this.handleClick}>
+                    <button className="btn btn-primary" onClick={this.viewCart} data-toggle="modal" data-target="#cartModal">
                         Carrito <span className="badge badge-light">{cart.length}</span>
                     </button>
                 </nav>
                 <div className="container-fluid content">
+                    <Cart showCart={showCart} cart={cart} id={id}/>
                     <div className="row">
                             {books.map(book => {
                                 return <BookCard {...book} key={book.ID} handleAddToCart={this.handleAddToCart.bind(this, book)}/>
