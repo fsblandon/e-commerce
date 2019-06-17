@@ -12,18 +12,19 @@ class Cart extends React.Component {
     }
 
     delete = (book) => {
-        //const cartItem = this.state.cart.find(x => x.ID === book.ID);
         const items = this.props.cart.filter(item => item.ID !== book.ID);
         this.setState({cart : items});
+    }
 
-        console.log(this.state.cart);
+    componentDidMount() {
+        this.setState({showCart: this.props.showCart});
     }
 
     render() {
         const {cart, showCart, id} = this.props;
         const showHideClassName = showCart ? "modal display-block" : "modal display-none"
         return (
-                    <div className="modal fade" id={id} tabIndex="-1" role="dialog" aria-hidden="true">
+                    <div className="modal fade" id={id} tabIndex="-1" role="dialog">
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                             <div className="modal-header">

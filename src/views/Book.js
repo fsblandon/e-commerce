@@ -7,8 +7,13 @@ import {  dataBooks } from '../data/books';
 import { history } from '../_helpers/history';
 
 export default class Book extends React.Component {
-  state = {
-    book: {},
+
+  constructor(props){
+    super(props);
+    this.state ={
+      book: {}
+    }
+    this.goBack = this.goBack.bind(this);
   }
 
   componentDidMount() {
@@ -22,14 +27,17 @@ export default class Book extends React.Component {
 
   }
 
+  goBack() {
+    history.goBack();
+  }
+
   render() {
     const { book } = this.state;
-    console.log(book);
     return (
       <React.Fragment>
         <div className="row padding">
           <div className="col-md-8 text-center">
-            <button className='btn btn-primary' onClick={history.goBack}>Regresar</button>
+            <button className='btn btn-primary' onClick={this.goBack}>Regresar</button>
           </div>
         </div>
         <div className="row">
@@ -41,7 +49,7 @@ export default class Book extends React.Component {
                   <h5>Editorial: {book.publisher}-{book.publisher_date}</h5>
                   <h5>Páginas: {book.pages}</h5>
                   <h5>Idioma: {book.language}</h5>
-                  <p className="detail"><h5>Descripción: </h5>{book.content}</p>
+                  <p className="detail"><span>Descripción: </span>{book.content}</p>
                 </div>
             </div>
           </div>

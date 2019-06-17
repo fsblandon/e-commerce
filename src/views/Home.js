@@ -55,12 +55,12 @@ class Home extends React.Component {
     }
 
     viewCart = () => {
-        console.log(this.state.cart);
         if(this.state.cart.length > 0){
-            this.setState({showCart: true});
+            this.setState({showCart: !this.state.showCart});
             this.setState({id: 'cartModal'});
         } else {
-            this.setState({showCart: false});
+            alert('Selecciona libros a solicitar');
+            this.setState({showCart: this.state.showCart});
         }
     }
 
@@ -73,12 +73,12 @@ class Home extends React.Component {
                     <form className="form-inline">
                         <input className="form-control mr-sm-2" type="text" placeholder="Buscar libro" aria-label="Search" onChange={this.handleChange}/>
                     </form>
-                    <button className="btn btn-primary" onClick={this.viewCart} data-toggle="modal" data-target="#cartModal">
+                    <button className="btn btn-primary ml-auto" onClick={this.viewCart} data-toggle="modal" data-target="#cartModal">
                         Carrito <span className="badge badge-light">{cart.length}</span>
                     </button>
                 </nav>
                 <div className="container-fluid content">
-                    <Cart showCart={showCart} cart={cart} id={id}/>
+                    <Cart showCart={showCart} cart={cart} id={id} onClick={this.viewCart}/>
                     <div className="row">
                             {books.map(book => {
                                 return <BookCard {...book} key={book.ID} handleAddToCart={this.handleAddToCart.bind(this, book)}/>

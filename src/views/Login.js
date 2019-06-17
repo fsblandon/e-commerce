@@ -24,7 +24,6 @@ class Login extends React.Component {
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
-            console.log(this.props);
             this.props.loginUser(username, password);
             //this.props.history.push('home');
         }
